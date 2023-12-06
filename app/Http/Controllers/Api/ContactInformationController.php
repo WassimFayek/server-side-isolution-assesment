@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 use App\Models\ContactInformation;
+use App\Http\Controllers\Controller;
 use Illuminate\Validation\ValidationException;
 
 class ContactInformationController extends Controller
