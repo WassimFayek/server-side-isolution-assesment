@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Contracts\Validation\ValidationRule;
 
@@ -25,7 +26,11 @@ class ContactRequest extends FormRequest
         return [
             'first_name' => 'required|string|min:3|max:15',
             'last_name' => 'required|string|min:3|max:15',
-            'email' => 'required|email|unique:contact_information',
+            'email' => [
+                'required',
+                'email',
+                Rule::unique('contact_information')->ignore($this->route('id'))
+            ],
             'phone_number' => ['nullable','digits:8' ,'regex:/^(70|03|71|81)\d{6}$/']
         ];
     }
